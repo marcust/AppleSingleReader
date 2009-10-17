@@ -45,7 +45,7 @@ public class Entry {
     
     @Override
     public @Nonnull String toString() {
-        return _id + " (length: " + _length + ")";
+        return _id + " (length: " + _length + "): " + _id.getConverter().fromBytes(_data);
     }
     
 }
