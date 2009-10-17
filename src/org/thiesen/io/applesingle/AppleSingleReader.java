@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 import javax.annotation.Nonnull;
@@ -13,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.thiesen.io.applesingle.beans.EntryId;
 import org.thiesen.io.applesingle.model.AppleSingle;
 import org.thiesen.io.applesingle.model.Entry;
+import org.thiesen.io.applesingle.util.Utils;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;
@@ -20,7 +20,7 @@ import com.google.common.collect.ImmutableList.Builder;
 
 
 /**
- * See http://www.faqs.org/rfcs/rfc1740.html and fix the endianess
+ * See http://www.faqs.org/rfcs/rfc1740.html
  * 
  */
 public class AppleSingleReader {
@@ -65,7 +65,7 @@ public class AppleSingleReader {
     private @Nonnull byte[] copyWithLimitCheck(byte[] data, int offset,
             int length) {
         if ( offset > 0 && length > 0 ) {
-            if ( offset + length < data.length ) {
+            if ( offset + length <= data.length ) {
                 return Arrays.copyOfRange(data, offset, offset + length);
             }
         }
@@ -93,7 +93,7 @@ public class AppleSingleReader {
         // in the newer def this is just "filling" of 16 empty bytes
         final byte[] homeFileSystem = new byte[16];
         inStream.readFully(homeFileSystem);
-        return new String(homeFileSystem, Charset.forName("ASCII"));
+        return Utils.stringFromAsciiBytes(homeFileSystem);
     }
 
     private int readVersionNumber(DataInputStream inStream) throws IOException {

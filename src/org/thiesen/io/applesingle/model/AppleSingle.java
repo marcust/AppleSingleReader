@@ -1,5 +1,7 @@
 package org.thiesen.io.applesingle.model;
 
+import java.io.InputStream;
+
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableCollection;
@@ -29,6 +31,14 @@ public class AppleSingle {
         retval.append("AppleSingle ").append(_magicNumber).append(" ").append(_versionNumber).append('\n');
         _entries.appendTo(retval);
         return retval.toString();
+    }
+
+    public InputStream getResourceForkStream() {
+        return _entries.getResourceForkStream();
+    }
+
+    public String getRealName() {
+        return _entries.getRealName();
     }
     
 }

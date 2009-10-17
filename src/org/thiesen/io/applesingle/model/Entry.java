@@ -45,7 +45,15 @@ public class Entry {
     
     @Override
     public @Nonnull String toString() {
-        return _id + " (length: " + _length + "): " + _id.getConverter().fromBytes(_data);
+        return _id + " (length: " + _length + ", actual length " + _data.length + "): " + convertedStringValue();
+    }
+
+    public @Nonnull EntryId getId() {
+        return _id;
+    }
+
+    public String convertedStringValue() {
+        return _id.getConverter().fromBytes(_data);
     }
     
 }
