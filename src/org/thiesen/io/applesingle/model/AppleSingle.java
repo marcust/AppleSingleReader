@@ -22,6 +22,7 @@ public class AppleSingle {
                 Entries.wrap( entryDataEntries ) ); 
     }
 
+    @Override
     public String toString() {
         final StringBuilder retval = new StringBuilder();
         

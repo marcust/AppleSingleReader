@@ -43,6 +43,7 @@ public class Entry {
         return _data.clone();
     }
     
+    @Override
     public @Nonnull String toString() {
         return _id + " (length: " + _length + ")";
     }

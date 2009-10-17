@@ -9,6 +9,7 @@ public class VersionNumber extends Number {
         _value = versionNumber;
     }
     
+    @Override
     public byte byteValue() {
         return _value.byteValue();
     }
@@ -17,26 +18,32 @@ public class VersionNumber extends Number {
         return _value.compareTo(anotherInteger);
     }
 
+    @Override
     public double doubleValue() {
         return _value.doubleValue();
     }
 
+    @Override
     public float floatValue() {
         return _value.floatValue();
     }
 
+    @Override
     public int intValue() {
         return _value.intValue();
     }
 
+    @Override
     public long longValue() {
         return _value.longValue();
     }
 
+    @Override
     public short shortValue() {
         return _value.shortValue();
     }
 
+    @Override
     public String toString() {
         return "Version: " + Integer.toHexString(_value.intValue());
     }
